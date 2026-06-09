@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+      initial-scale=1.0">
+    <title>Citayen - Mantenimiento Citation y Cheyenne | Aeropuerto
+      Metropolitano</title>
+    <meta name="description" content="Citayen: mantenimiento aeronáutico
+      especializado en jets Citation y turbohélices PA-31T Cheyenne.
+      Hangar propio en el Aeropuerto Metropolitano (Ocumare del Tuy).">
+    <style>
+        :root {
+            --azul-oscuro: #1b2a47;
+            --azul-medio: #2c3e6d;
+            --gris-azulado: #4a5568;
+            --blanco: #ffffff;
+            --gris-claro: #f0f2f5;
+            --acento: #c4923a;
+            --acento-hover: #a0742e;
+            --texto: #2d3748;
+            --texto-claro: #4a5568;
+            --sombra: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --borde: #e2e8f0;
+            --max-width: 1100px;
+            --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font);
+            color: var(--texto);
+            line-height: 1.6;
+            background: var(--gris-claro);
+        }
+
+        /* Menú principal */
+        header {
+            background: var(--azul-oscuro);
+            color: var(--blanco);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--sombra);
+        }
+        .header-container {
+            max-width: var(--max-width);
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 1rem;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--blanco);
+            text-decoration: none;
+        }
+        .logo span {
+            color: var(--acento);
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+        nav a {
+            color: var(--blanco);
+            text-decoration: none;
+            padding: 0.5rem 0.7rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #1b2a47 0%, #2c3e6d 100%);
+            color: white;
+            padding: 4rem 1rem 3rem;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: var(--acento);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            margin: 0.3rem;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background: var(--acento-hover);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--acento);
+            color: white;
+        }
+        .btn-outline:hover {
+            background: var(--acento);
+        }
+
+        /* Secciones */
+        .section {
+            padding: 3rem 1rem;
+            max-width: var(--max-width);
+            margin: auto;
+        }
+        .section:nth-child(even) {
+            background: var(--blanco);
+        }
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--azul-oscuro);
+            border-bottom: 3px solid var(--acento);
+            display: inline-block;
+            padding-bottom: 0.3rem;
+        }
+        .section h3 {
+            font-size: 1.4rem;
+            color: var(--azul-medio);
+            margin: 1.5rem 0 0.8rem;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--sombra);
+            border: 1px solid var(--borde);
+        }
+        .card h3 {
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+        .pilares-icon {
+            font-size: 2rem;
+            color: var(--acento);
+            margin-bottom: 0.5rem;
+        }
+        .testimonio {
+            background: #edf2f7;
+            border-left: 5px solid var(--acento);
+            padding: 1.2rem 1.5rem;
+            font-style: italic;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .testimonio strong {
+            display: block;
+            margin-top: 0.5rem;
+            font-style: normal;
+            color: var(--azul-oscuro);
+        }
+
+        /* Servicios */
+        .servicio-lista {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        .servicio-item {
+            background: var(--gris-claro);
+            padding: 1rem 1.2rem;
+            border-radius: 6px;
+            border-left: 3px solid var(--acento);
+        }
+
+        /* Proyectos */
+        .proyecto {
+            background: white;
+            border: 1px solid var(--borde);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .proyecto h3 {
+            margin-top: 0;
+            color: var(--azul-oscuro);
+        }
+
+        /* Blog */
+        .blog-list {
+            list-style: none;
+        }
+        .blog-list li {
+            margin-bottom: 0.8rem;
+        }
+        .blog-list a {
+            color: var(--azul-medio);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .blog-list a:hover {
+            text-decoration: underline;
+        }
+
+        /* FAQ */
+        details {
+            background: white;
+            border: 1px solid var(--borde);
+            border-radius: 6px;
+            margin-bottom: 0.7rem;
+            padding: 0.8rem 1rem;
+        }
+        summary {
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--azul-oscuro);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--azul-oscuro);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: var(--acento);
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--azul-oscuro);
+                padding: 0.5rem;
+            }
+            nav ul.show {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .section h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-container"> <a href="#" class="logo">CITA<span>YEN</span></a>
+        <button class="menu-toggle" id="menu-toggle">☰</button>
+        <nav id="nav-menu">
+          <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#proyectos">Proyectos</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!-- INICIO -->
+    <section id="inicio" class="hero"> <img src="Citayen_150.jpg"
+        alt="" width="150" height="107">
+      <h1>Citayen: el cuidado que su Citation y Cheyenne merecen</h1>
+      <p>Especialistas en mantenimiento de aeronaves ejecutivas Cessna
+        Citation y Piper PA-31T en Venezuela.<br>
+        Hangar en el Aeropuerto Metropolitano de Ocumare del Tuy.</p>
+      <a href="#contacto" class="btn">Solicitar inspección</a> <a
+        href="https://wa.me/580000000000" class="btn btn-outline"
+        target="_blank">Escríbanos por WhatsApp</a> </section>
+    <section class="section" style="background:var(--blanco)">
+      <h2>¿Por qué Citayen?</h2>
+      <div class="grid-3">
+        <div class="card">
+          <div class="pilares-icon">✈️</div>
+          <h3>Especialistas sin distracciones</h3>
+          <p>No hacemos mantenimiento general. Nuestra experiencia está
+            concentrada en dos plataformas: la familia Cessna Citation y
+            el Piper PA-31T Cheyenne. Eso significa diagnósticos más
+            rápidos, menos tiempo en tierra y un trabajo con la
+            precisión que solo da la repetición constante.</p>
+        </div>
+        <div class="card">
+          <div class="pilares-icon">📍</div>
+          <h3>Respuesta local, en su ruta</h3>
+          <p>Operamos desde el Aeropuerto Metropolitano (SVCS), en
+            Ocumare del Tuy, a 45 minutos de Caracas y a 20 de
+            Charallave. Una ubicación ideal para atender aeronaves que
+            vuelan hacia el centro y oriente del país sin desviarse de
+            su operación.</p>
+        </div>
+        <div class="card">
+          <div class="pilares-icon">🔧</div>
+          <h3>Estándares de fábrica, mentalidad venezolana</h3>
+          <p>Aplicamos procedimientos de los fabricantes (Textron
+            Aviation, Piper Aircraft) con técnicos licenciados por el
+            INAC. Pero además entendemos la realidad local: la humedad
+            del trópico, los ciclos operativos cortos y la importancia
+            de mantener su aeronave disponible.</p>
+        </div>
+      </div>
+      <div class="testimonio"> “Desde que llevamos el Citation Bravo a
+        Citayen en Ocumare, encontramos lo que buscábamos: conocimiento
+        real del avión, comunicación directa con el mecánico y cero
+        excusas. Finalmente un taller que habla nuestro idioma.” <strong>—
+          Capitán Ricardo Márquez, Caracas.</strong> </div>
+    </section>
+    <!-- NOSOTROS -->
+    <section id="nosotros" class="section">
+      <h2>Nosotros</h2>
+      <h3>Nuestra historia</h3>
+      <p>Citayen nació de una certeza: en Venezuela faltaba un centro de
+        mantenimiento que tratara a los Citation y a los Cheyenne no
+        como un avión más, sino como lo que son: máquinas complejas con
+        personalidad propia, que exigen manos que las conozcan al
+        dedillo.</p>
+      <p>Desde nuestro hangar en el <strong>Aeropuerto Metropolitano de
+          Ocumare del Tuy</strong>, unimos dos pasiones en una sola
+        palabra y una sola misión: ofrecer servicios de mantenimiento
+        aeronáutico civil con los más altos estándares, aplicados por un
+        equipo que literalmente sueña con PT6A, JT15D, hélices Hartzell
+        y paneles Pro Line.</p>
+      <p>No trabajamos con todo. Trabajamos con lo que sabemos. Y lo
+        sabemos porque lo hacemos todos los días.</p>
+      <h3>Nuestra filosofía</h3>
+      <ul>
+        <li><strong>Integridad técnica:</strong> ningún trabajo sale de
+          nuestro hangar sin cumplir el manual y sin pasar nuestro
+          control de calidad interno.</li>
+        <li><strong>Transparencia:</strong> el cliente recibe fotos
+          diarias del avance, informe escrito y una explicación clara de
+          cada hallazgo.</li>
+        <li><strong>Compromiso con los plazos:</strong> entendemos que
+          un avión en tierra cuesta dinero. Planificamos y cumplimos.</li>
+        <li><strong>Cercanía:</strong> en Citayen el dueño o piloto
+          puede hablar directamente con el inspector que trabaja en su
+          aeronave.</li>
+      </ul>
+      <h3>Nuestro equipo</h3>
+      <p><em>(Complete con los nombres y fotos reales del personal)</em></p>
+      <div class="grid-3">
+        <div class="card"><strong>Inspector de Calidad</strong><br>
+          20 años en la familia Citation. Conoce cada capítulo del AMM.</div>
+        <div class="card"><strong>Mecánica de Motores</strong><br>
+          Formada en Pratt &amp; Whitney Canadá. Especialista en PT6A y
+          boroscopía.</div>
+        <div class="card"><strong>Técnico de Aviónica</strong><br>
+          Experto en integración Garmin GTN, G500 TXi y solución de
+          fallas Pro Line 21.</div>
+      </div>
+      <h3>Nuestro hangar en el Metropolitano</h3>
+      <p>Hangar de 400 m² con capacidad para dos aeronaves simultáneas,
+        iluminación LED, herramientas calibradas, zona de almacenamiento
+        de partes, sala de pilotos con wifi y aire acondicionado.</p>
+    </section>
+    <!-- SERVICIOS -->
+    <section id="servicios" class="section"
+      style="background:var(--blanco)">
+      <h2>Servicios</h2>
+      <p>En Citayen estructuramos nuestro trabajo alrededor de las
+        necesidades reales de cada plataforma. Ofrecemos desde
+        inspecciones de rutina hasta reparaciones mayores, siempre bajo
+        los mismos principios: técnicos especializados, procedimientos
+        OEM, comunicación constante y plazos que se respetan.</p>
+      <h3>Para Cessna Citation</h3>
+      <p><em>Modelos atendidos: Citation I, II, Bravo, Ultra, Encore,
+          Excel, Sovereign y otros bajo consulta.</em></p>
+      <div class="servicio-lista">
+        <div class="servicio-item"><strong>Mantenimiento programado:</strong>
+          fases completas, inspecciones de matrícula, cumplimiento de
+          AD/SB.</div>
+        <div class="servicio-item"><strong>Motores JT15D / PW530:</strong>
+          boroscopía, reemplazo de LRU, monitoreo de tendencias, lavado
+          de compresor.</div>
+        <div class="servicio-item"><strong>Tren de aterrizaje:</strong>
+          overhaul de actuadores, cambio de sellos, pruebas funcionales.</div>
+        <div class="servicio-item"><strong>Sistemas:</strong>
+          presurización, aire acondicionado, combustible, hidráulico.</div>
+        <div class="servicio-item"><strong>Aviónica:</strong>
+          diagnóstico Pro Line 21, G1000/G3000, actualización ADS-B,
+          integración GPS.</div>
+        <div class="servicio-item"><strong>Estructura:</strong>
+          reparaciones metálicas y composite, evaluación de daños.</div>
+      </div>
+      <h3>Para Piper PA-31T Cheyenne</h3>
+      <p><em>Modelos atendidos: PA-31T Cheyenne I, II, IIXL y variantes.</em></p>
+      <div class="servicio-lista">
+        <div class="servicio-item"><strong>Mantenimiento programado:</strong>
+          inspecciones de fuselaje y motores según programa Piper.</div>
+        <div class="servicio-item"><strong>Motores PT6A:</strong>
+          boroscopía, lavado de compresor, cambio de componentes de
+          línea.</div>
+        <div class="servicio-item"><strong>Hélices Hartzell:</strong>
+          overhaul, ajuste, cambio de sellos, balanceo dinámico.</div>
+        <div class="servicio-item"><strong>Sistemas:</strong> hidráulico
+          de tren retráctil, presurización, sellado de tanques.</div>
+        <div class="servicio-item"><strong>Aviónica:</strong> migración
+          de King Silver a Garmin GTN/G500 TXi, ADS-B.</div>
+        <div class="servicio-item"><strong>Control de corrosión:</strong>
+          tratamientos preventivos, inspecciones en zonas críticas.</div>
+      </div>
+      <h3>Servicios adicionales (ambas flotas)</h3>
+      <ul>
+        <li>Gestión de Aeronavegabilidad Continua</li>
+        <li>Inspección Pre-Compra con informe detallado</li>
+        <li>Parqueo y hangaraje en el Aeropuerto Metropolitano</li>
+        <li>Coordinación de repintado y refurbishment interior</li>
+      </ul>
+      <h3>Proceso "Turnaround Citayen"</h3>
+      <ol>
+        <li>Contacto inicial y cotización transparente.</li>
+        <li>Recepción en el Metropolitano e inspección de entrada con el
+          piloto.</li>
+        <li>Ejecución en hangar con fotos diarias al cliente.</li>
+        <li>Control de calidad interno.</li>
+        <li>Vuelo de comprobación (si aplica).</li>
+        <li>Entrega con debriefing técnico y garantía.</li>
+      </ol>
+    </section>
+    <!-- PROYECTOS -->
+    <section id="proyectos" class="section">
+      <h2>Proyectos realizados</h2>
+      <div class="proyecto">
+        <h3>Recuperación de un Citation II con largo tiempo de
+          inactividad</h3>
+        <p><strong>Situación inicial:</strong> aeronave estacionada por
+          más de 3 años sin programa de preservación.</p>
+        <p><strong>Trabajos realizados:</strong> inspección completa de
+          corrosión, overhaul de motores JT15D-4, cambio de mangueras,
+          sellos y mazos eléctricos deteriorados, actualización de
+          aviónica básica, repintado exterior parcial.</p>
+        <p><strong>Resultado:</strong> aeronave puesta en servicio con
+          nueva aeronavegabilidad, operando exitosamente vuelos chárter
+          desde Caracas.</p>
+        <p><em>"Pensé que ese avión no volaba más. Citayen me demostró
+            lo contrario."</em></p>
+      </div>
+      <div class="proyecto">
+        <h3>Modernización de cabina de un PA-31T Cheyenne II</h3>
+        <p><strong>Situación inicial:</strong> panel analógico King
+          Silver, sin GPS aprobado para procedimientos RNAV, sin ADS-B.</p>
+        <p><strong>Trabajos realizados:</strong> instalación de Garmin
+          GTN 750, GTN 650 secundario, transpondedor GTX 345 con ADS-B
+          Out/In, audio panel GMA 35 y G500 TXi.</p>
+        <p><strong>Resultado:</strong> cabina completamente operativa
+          para espacio aéreo actual, con redundancia y valor de reventa
+          incrementado.</p>
+        <p><em>"Pasé de volar con cartas de papel a tener todo en
+            pantalla. La integración quedó impecable."</em></p>
+      </div>
+      <div class="proyecto">
+        <h3>Inspección Fase 1-4 de un Citation Bravo con entrega en
+          tiempo récord</h3>
+        <p><strong>Situación inicial:</strong> cliente corporativo con
+          parada programada de 14 días.</p>
+        <p><strong>Trabajos realizados:</strong> ejecución simultánea de
+          tareas por dos equipos (célula y motor). Jornada nocturna
+          controlada para absorber imprevistos.</p>
+        <p><strong>Resultado:</strong> aeronave entregada en 13 días,
+          completamente inspeccionada y con informe digital. El cliente
+          no perdió un solo día de operación programada.</p>
+        <p><em>"Ni en talleres más grandes había visto cumplir un plazo
+            tan ajustado con ese nivel de detalle."</em></p>
+      </div>
+    </section>
+    <!-- BLOG -->
+    <section id="blog" class="section" style="background:var(--blanco)">
+      <h2>Blog / Recursos técnicos</h2>
+      <ul class="blog-list">
+        <li>📄 <a href="articulo-citation-tropical.html">Mantenimiento
+            de Citation en climas tropicales: lo que todo operador en
+            Venezuela debe saber</a></li>
+        <li>📄 <a href="articulo-pt6a-lavado.html">PT6A en el trópico:
+            cada cuánto lavar el compresor de su Cheyenne</a></li>
+        <li>📄 <a href="articulo-precompra.html">Inspección pre-compra
+            de un Citation usado: la guía definitiva</a></li>
+      </ul>
+    </section>
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <h2>Preguntas frecuentes</h2>
+      <details>
+        <summary>¿Atienden aeronaves que no sean Citation o PA-31T
+          Cheyenne?</summary>
+        <p>Nuestra especialización está en esas dos familias.
+          Excepcionalmente y dependiendo de la carga de trabajo, podemos
+          evaluar trabajos menores en otras aeronaves ejecutivas de
+          similar complejidad.</p>
+      </details>
+      <details>
+        <summary>¿Cómo manejan el suministro de partes y consumibles?</summary>
+        <p>Contamos con relaciones estables con proveedores
+          internacionales y manejamos canales logísticos que han
+          demostrado funcionar. Además mantenemos un inventario
+          estratégico de partes de alta rotación.</p>
+      </details>
+      <details>
+        <summary>¿Qué documentación entregan al finalizar el
+          mantenimiento?</summary>
+        <p>Se entrega un paquete de liberación que incluye orden de
+          trabajo detallada, registros de cumplimiento de AD/SB, reporte
+          de inspección y garantía escrita sobre la mano de obra.</p>
+      </details>
+      <details>
+        <summary>¿Ofrecen garantía sobre sus reparaciones?</summary>
+        <p>Sí, todos nuestros trabajos tienen garantía sobre la mano de
+          obra ejecutada, por el período y condiciones que se
+          especifican en la orden de servicio.</p>
+      </details>
+      <details>
+        <summary>¿Pueden hacer el servicio en mi base?</summary>
+        <p>La mayoría de los trabajos requieren ejecutarse en nuestro
+          hangar, donde tenemos todas las herramientas y control de
+          calidad. Para evaluaciones o servicios menores, podemos
+          coordinar una visita previa.</p>
+      </details>
+      <details>
+        <summary>¿Cuentan con seguros de responsabilidad civil?</summary>
+        <p>Sí, Citayen opera con las pólizas de seguro requeridas para
+          la actividad, incluyendo responsabilidad civil hangar y
+          trabajos aeronáuticos.</p>
+      </details>
+      <details>
+        <summary>¿Cómo inicio una cotización?</summary>
+        <p>Puede escribirnos por WhatsApp, llenar el formulario de
+          contacto en nuestra web, o visitarnos directamente en el
+          Aeropuerto Metropolitano.</p>
+      </details>
+    </section>
+    <!-- CONTACTO -->
+    <section id="contacto" class="section"
+      style="background:var(--blanco)">
+      <h2>Contacto</h2>
+      <p><strong>WhatsApp:</strong> +58 XXX-XXXXXXX</p>
+      <p><strong>Correo:</strong> info@citayen.com</p>
+      <p><strong>Dirección:</strong> Hangar Citayen, Calle de Rodaje
+        Principal, Aeropuerto Metropolitano de Ocumare del Tuy (SVCS),
+        Municipio Tomás Lander, Estado Miranda, Venezuela.</p>
+      <p><strong>Horario:</strong> Lunes a viernes de 08:00 a 17:00.
+        Sábados y trabajos nocturnos con coordinación previa.</p>
+      <h3>Solicitar cotización</h3>
+      <form style="max-width:500px;"> <input placeholder="Nombre y
+          apellido" required=""
+          style="width:100%;padding:0.6rem;margin:0.3rem 0;border:1px
+          solid #ccc;border-radius:4px;" type="text"><br>
+        <input placeholder="Correo electrónico" required=""
+          style="width:100%;padding:0.6rem;margin:0.3rem 0;border:1px
+          solid #ccc;border-radius:4px;" type="email"><br>
+        <input placeholder="Teléfono"
+          style="width:100%;padding:0.6rem;margin:0.3rem 0;border:1px
+          solid #ccc;border-radius:4px;" type="tel"><br>
+        <select style="width:100%;padding:0.6rem;margin:0.3rem
+          0;border:1px solid #ccc;border-radius:4px;">
+          <option selected="selected">Seleccione aeronave</option>
+          <option>Citation I/II/Bravo/Ultra</option>
+          <option>Citation Encore/Excel</option>
+          <option>Citation Sovereign</option>
+          <option>PA-31T Cheyenne I/II/IIXL</option>
+          <option>Otro</option>
+        </select>
+        <br>
+        <input placeholder="Matrícula"
+          style="width:100%;padding:0.6rem;margin:0.3rem 0;border:1px
+          solid #ccc;border-radius:4px;" type="text"><br>
+        <select style="width:100%;padding:0.6rem;margin:0.3rem
+          0;border:1px solid #ccc;border-radius:4px;">
+          <option selected="selected">Servicio requerido</option>
+          <option>Inspección programada</option>
+          <option>Reparación correctiva</option>
+          <option>Evaluación pre-compra</option>
+          <option>Parqueo/hangaraje</option>
+          <option>Consulta técnica</option>
+          <option>Otro</option>
+        </select>
+        <br>
+        <textarea placeholder="Mensaje" rows="4" style="width:100%;padding:0.6rem;margin:0.3rem 0;border:1px solid #ccc;border-radius:4px;"></textarea><br>
+        <button type="submit" class="btn"
+          style="border:none;cursor:pointer;">Enviar solicitud</button>
+      </form>
+    </section>
+    <footer>
+      <p><strong>Citayen, C.A.</strong> — Hangar Citayen, Aeropuerto
+        Metropolitano de Ocumare del Tuy (SVCS), Edo. Miranda,
+        Venezuela.</p>
+      <p> <a href="politica-privacidad.html">Política de Privacidad</a>
+        | <a href="terminos-uso.html">Términos de Uso</a> </p>
+      <p style="margin-top:1rem;">© 2024 Citayen. Todos los derechos
+        reservados. <em>"Su Citation y su Cheyenne son nuestra
+          familia."</em></p>
+    </footer>
+    <script>
+    // Menú toggle para móvil
+    const toggle = document.getElementById('menu-toggle');
+    const nav = document.getElementById('nav-menu').querySelector('ul');
+    toggle.addEventListener('click', () => {
+        nav.classList.toggle('show');
+    });
+
+    // Cerrar menú al hacer clic en un enlace (móvil)
+    nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('show');
+        });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+        });
+    }); </script>
+  </body>
+</html>
